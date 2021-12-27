@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +24,7 @@ public class LoginSteps {
 		driver = new ChromeDriver();
 
 		lp = new LoginPage(driver);
+		
 	}
 
 	@When("^User open the url \"([^\"]*)\"$")
@@ -102,7 +105,6 @@ public class LoginSteps {
 	@Then("^close the browser$")
 	public void close_the_browser() {
 		driver.quit();
-		;
 	}
 
 }

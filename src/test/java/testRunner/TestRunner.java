@@ -11,7 +11,10 @@ import io.cucumber.junit.CucumberOptions;
 				   glue="stepDefinitions",
 				   dryRun=false,
 				   monochrome=true,
-				   plugin= {"pretty","html:target/cucumber/report.html"}
+				   plugin= {"pretty","summary",
+						   "html:target/cucumber-reports/cucumber-pretty", 
+						   "json:target/cucumber-reports/CucumberTestReport.json"}
+				   //tags = {"~@SmokeTest" , "~@RegressionTest", "~@End2End"}	
 		)
 public class TestRunner {
 	
