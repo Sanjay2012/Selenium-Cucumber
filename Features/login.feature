@@ -1,7 +1,7 @@
 #Author: sanjaywaware04@gmail.com
-Feature: login 
+Feature: Admin Login and Add new Customer
 
-@smokeTest
+@SmokeTest
 Scenario: Login page validation
 	
 	Given User launch chrome browser 
@@ -14,7 +14,7 @@ Scenario: Login page validation
 	# Then verify the error messge upon entering invalid credentials
 	And close the browser
 	
-	@regression
+	@RegressionTest
 Scenario: As a user i can login successfully with valid credentials 
 	Given User launch chrome browser 
 	When User open the url "https://admin-demo.nopcommerce.com/login" 
@@ -26,7 +26,7 @@ Scenario: As a user i can login successfully with valid credentials
 	And close the browser
 	
 	
-@regression
+@RegressionTest
 	Scenario Outline: Login Data driven
 	Given User launch chrome browser 
 	When User open the url "https://admin-demo.nopcommerce.com/login" 

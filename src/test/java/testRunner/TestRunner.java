@@ -7,14 +7,15 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions ( features=".//Features/login.feature",
+@CucumberOptions ( features=".//Features", 
 				   glue="stepDefinitions",
 				   dryRun=false,
 				   monochrome=true,
 				   plugin= {"pretty","summary",
 						   "html:target/cucumber-reports/cucumber-pretty", 
 						   "json:target/cucumber-reports/CucumberTestReport.json"}
-				   //tags = {"~@SmokeTest" , "~@RegressionTest", "~@End2End"}	
+				   //tags = "@RegressionTest, @SmaokeTest"
+				   	
 		)
 public class TestRunner {
 	

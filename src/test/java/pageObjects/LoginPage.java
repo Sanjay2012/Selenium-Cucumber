@@ -2,39 +2,29 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 	public WebDriver ldriver;
 	
+	
 	// Initialize driver
 
-	public LoginPage(WebDriver driver) {
-		PageFactory.initElements(driver, this);
-	}
-	
-	// Elements
-	
-	@FindBy(id="Email")
-	@CacheLookup
-	WebElement txtEmail;
-
-	
-	@FindBy(id="Password")
-	@CacheLookup
-	WebElement txtPassword;
+			public LoginPage(WebDriver rdriver) {
+				ldriver=rdriver;
+				PageFactory.initElements(ldriver, this);
+			}
 	
 	
-	@FindBy(xpath="//*[@type=\"submit\"]")
-	@CacheLookup
-	WebElement loginBtn;
+	// Admin Login Elements
+	
+	@FindBy(id="Email") public WebElement txtEmail;
+	@FindBy(id="Password") public WebElement txtPassword;
+	@FindBy(xpath="//*[@type=\"submit\"]") public WebElement loginBtn;
+	@FindBy(xpath="//a[@href='/logout']") public WebElement logoutlnk;
 	
 	
-	@FindBy(xpath="//a[@href='/logout']")
-	@CacheLookup
-	WebElement logoutlnk;
 	
 	
 	// Actions
@@ -59,5 +49,7 @@ public class LoginPage {
 		logoutlnk.click();
 		
 	}
+	
+
 	
 }
