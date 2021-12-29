@@ -79,21 +79,6 @@ public class AddNewCustomerPage {
 
 	}
 
-	/*
-	 * public void customerInfo() {
-		ldriver.findElement(emailid).sendKeys("Sanjay2020@0n.in");
-		ldriver.findElement(firstName).sendKeys("Shivansh");
-		ldriver.findElement(lastName).sendKeys("Kapoor");
-		ldriver.findElement(malecheck).click();
-		ldriver.findElement(companyName).sendKeys("MadeEasy CTC");
-		ldriver.findElement(taxExemptedCheck).click();
-		ldriver.findElement(newsDropdown).click();
-		ldriver.findElement(listValue1).click();
-		ldriver.findElement(adminComment).sendKeys("Register new Customer");
-
-	}
-	*/
-
 	public void setEmail(String email) {
 		ldriver.findElement(emailid).sendKeys(email);
 		
@@ -194,17 +179,9 @@ public class AddNewCustomerPage {
 		
 	}
 
-	
-
-	
-	
-	
 
 	
 
-
 	
-
-
-
+	
 }

@@ -11,6 +11,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.AddNewCustomerPage;
 import pageObjects.LoginPage;
+import pageObjects.SearchCustemerPage;
+import utilities.WaitHelper;
 
 public class LoginSteps extends BaseClass{
 
@@ -151,10 +153,11 @@ public class LoginSteps extends BaseClass{
 	}
 
 	
+	
 	@When("user enter customer info")
 	public void user_enter_customer_info() {
-		String email=randomstring()+"@gmail.com";
-		addCustPo.setEmail(email);
+		String emailAddress="Shiv"+randomstring()+"@gmail.com";
+		addCustPo.setEmail(emailAddress);
 		addCustPo.setPassword("Shiv@123");
 		addCustPo.setFirstName("Shiv");
 		addCustPo.setLastName("Kumar");
@@ -184,5 +187,41 @@ public class LoginSteps extends BaseClass{
 		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("The new customer has been added successfully"));
 
 	}
+	
+	
+	// ------ steps to searching a customer by emailid
+	
+	@When("enter customer email")
+	public void enter_customer_email() {
+	searchCustPo= new SearchCustemerPage(driver);
+	searchCustPo.setEmail("admin@yourStore.com");
+	}
 
+	@When("click on search button")
+	public void click_on_search_button() throws InterruptedException {
+		searchCustPo.clickSearch();
+		Thread.sleep(5000);
+
+	}
+
+	@Then("user found email in search table")
+	public void user_found_email_in_search_table() {
+		boolean status=searchCustPo.searchCustomerByEmail("admin@yourStore.com");
+		Assert.assertEquals(true, status);
+
+	}
+	
+	
+	// search emailid in table without Search button
+	
+	@Then("user found emailId in table")
+	public void user_found_email_id_in_table() {
+		
+		boolean status=searchCustPo.searchCustomerByEmailInTable("admin@yourStore.com");
+		Assert.assertEquals(true, status);
+
+	}
+	
+	
+	
 }
