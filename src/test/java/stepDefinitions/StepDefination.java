@@ -16,6 +16,12 @@ import utilities.WaitHelper;
 
 public class StepDefination extends BaseClass{
 	
+	
+	String emailAddress="Shiv"+randomstring()+"@gmail.com";
+	String firstName="Shiv"+randomstring();
+	String lastName="Kumar"+randomstring();
+	String password=randomstring()+"@123";
+	
 
 //------------- Step definations  for login user----------------------------------
 	@Given("^User launch chrome browser$")
@@ -65,14 +71,25 @@ public class StepDefination extends BaseClass{
 		boolean checkbox = driver.findElement(By.xpath("//button[@type='submit']")).isDisplayed();
 		Assert.assertEquals(checkbox, true);
 	}
+	
+	
+	@When("user enter invalid credentials")
+	public void user_enter_invalid_credentials() {
+		loginPo=new LoginPage(driver);
+		loginPo.enterUsername(emailAddress);
+		loginPo.enterPassword(password);
 
-	/*@Then("verify the error messge upon entering invalid credentials")
-	public void verify_the_error_messge_upon_entering_invalid_credentials() {
-		String expected = "Login was unsuccessful. Please correct the errors and try again.";
+	}
+
+	@Then("verify the error messge as {string} upon entering invalid credentials")
+	public void verify_the_error_messge_as_upon_entering_invalid_credentials(String string) {
+		/*String expected = "Login was unsuccessful. Please correct the errors and try again.";
 		String errormsg = driver
 				.findElement(By.xpath("//div[@class='message-error validation-summary-errors']")).getText();
-		Assert.assertEquals(expected, errormsg);
-	}*/
+		Assert.assertEquals(expected, errormsg);*/
+		
+		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Login was unsuccessful. Please correct the errors and try again."));
+	}
 
 	@When("^user enter email as \"([^\"]*)\" and Password as \"([^\"]*)\"$")
 	public void user_enter_email_as_and_Password_as(String uname, String pass) {
@@ -158,15 +175,12 @@ public class StepDefination extends BaseClass{
 		Assert.assertEquals(expected, actual);
 
 	}
-	String emailAddress="Shiv"+randomstring()+"@gmail.com";
-	String firstName="Shiv"+randomstring();
-	String lastName="Kumar"+randomstring();
 	
 	@When("user enter customer info")
 	public void user_enter_customer_info() {
 		
 		addCustPo.setEmail(emailAddress);
-		addCustPo.setPassword("Shiv@123");
+		addCustPo.setPassword(password);
 		
 		addCustPo.setFirstName(firstName);
 		addCustPo.setLastName(lastName);

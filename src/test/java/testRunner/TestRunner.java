@@ -7,9 +7,9 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(features = ".//Features/searchCustomer.feature", glue = "stepDefinitions", dryRun = false, monochrome = true, plugin = {
+@CucumberOptions(features = ".//Features", glue = "stepDefinitions", dryRun = false, monochrome = true, plugin = {
 		"pretty", "summary", "html:target/cucumber-reports/cucumber-pretty",
-		"json:target/cucumber-reports/CucumberTestReport.json" }, tags="@Smoke"
+		"json:target/cucumber-reports/CucumberTestReport.json" }
 
 )
 public class TestRunner {

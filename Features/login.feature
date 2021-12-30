@@ -1,7 +1,7 @@
 #Author: sanjaywaware04@gmail.com
 Feature: Admin Login and Add new Customer 
 
-@SmokeTest 
+@Test 
 Scenario: Login page validation 
 
 	Given User launch chrome browser 
@@ -10,8 +10,10 @@ Scenario: Login page validation
 	Then verify the email filed 
 	Then verify the password filed 
 	Then verify remember me checkbox 
-	Then verify the login button status 
-	# Then verify the error messge upon entering invalid credentials
+	Then verify the login button status
+	When user enter invalid credentials 
+	And click on login btn
+	Then verify the error messge as "Login was unsuccessful. Please correct the errors and try again." upon entering invalid credentials
 	And close the browser 
 	
 @RegressionTest 

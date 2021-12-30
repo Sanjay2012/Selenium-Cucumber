@@ -17,10 +17,3 @@ Scenario: As a admin i can add new customer from dashboard
 	And click on save button 
 	Then user can view confirmation message "The new customer has been added successfully." 
 	And close the browser
-	
-	
-	
-	
-	
-	
-	
