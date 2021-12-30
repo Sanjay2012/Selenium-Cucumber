@@ -19,35 +19,6 @@ Scenario: As a admin i can add new customer from dashboard
 	And close the browser
 	
 	
-	@SmokeTest
-	Scenario: As a admin i can search custermer by EmailId using search button
-	
-	Given User launch chrome browser 
-	When User open the url "https://admin-demo.nopcommerce.com/login" 
-	And user enter email as "admin@yourstore.com" and Password as "admin" 
-	And click on login btn 
-	Then user can view Dashboard 
-	When user click on customers menu 
-	And click on customers menuItem 
-	And enter customer email
-	And click on search button
-	Then user found email in search table
-	And close the browser
-	
-	
-#	@searchCustInTable
-#	Scenario: As a admin i can search custermer by EmailId without search button
-#	
-#	Given User launch chrome browser 
-#	When User open the url "https://admin-demo.nopcommerce.com/login" 
-#	And user enter email as "admin@yourstore.com" and Password as "admin" 
-#	And click on login btn 
-#	Then user can view Dashboard 
-#	When user click on customers menu 
-#	And click on customers menuItem 
-#	And enter customer email
-#	Then user found emailId in table
-#	And close the browser
 	
 	
 	

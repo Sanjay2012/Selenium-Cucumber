@@ -14,9 +14,10 @@ import pageObjects.LoginPage;
 import pageObjects.SearchCustemerPage;
 import utilities.WaitHelper;
 
-public class LoginSteps extends BaseClass{
+public class StepDefination extends BaseClass{
+	
 
-
+//------------- Step definations  for login user----------------------------------
 	@Given("^User launch chrome browser$")
 	public void user_launch_chrome_browser() {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//Drivers/chromedriver.exe");
@@ -108,6 +109,12 @@ public class LoginSteps extends BaseClass{
 	}
 	
 	
+	
+	
+	
+	// ------------Steps to add new customer---------------------
+	
+	
 	@Then("user can view Dashboard")
 	public void user_can_view_dashboard() throws InterruptedException {
 		addCustPo=new AddNewCustomerPage(driver);
@@ -151,22 +158,25 @@ public class LoginSteps extends BaseClass{
 		Assert.assertEquals(expected, actual);
 
 	}
-
-	
+	String emailAddress="Shiv"+randomstring()+"@gmail.com";
+	String firstName="Shiv"+randomstring();
+	String lastName="Kumar"+randomstring();
 	
 	@When("user enter customer info")
 	public void user_enter_customer_info() {
-		String emailAddress="Shiv"+randomstring()+"@gmail.com";
+		
 		addCustPo.setEmail(emailAddress);
 		addCustPo.setPassword("Shiv@123");
-		addCustPo.setFirstName("Shiv");
-		addCustPo.setLastName("Kumar");
+		
+		addCustPo.setFirstName(firstName);
+		addCustPo.setLastName(lastName);
+		
 		addCustPo.setGender("Male");
 		addCustPo.setDOB("1/30/1990");    // M/DD/YYYY
-		addCustPo.setCompany("Made Easy CTC");
+		addCustPo.setCompany("MECTC");
 		//addCustPo.setCustomerRole("Registered");
 		addCustPo.setManagerOfVender("Vendor 1");
-		addCustPo.setAdminComment("This is for testing");
+		addCustPo.setAdminComment("to test");
 	}
 	
 
@@ -189,12 +199,14 @@ public class LoginSteps extends BaseClass{
 	}
 	
 	
-	// ------ steps to searching a customer by emailid
+	
+	
+	// ------ steps to searching a customer by emailid----------------------------------
 	
 	@When("enter customer email")
 	public void enter_customer_email() {
 	searchCustPo= new SearchCustemerPage(driver);
-	searchCustPo.setEmail("admin@yourStore.com");
+	searchCustPo.setEmail(emailAddress);
 	}
 
 	@When("click on search button")
@@ -206,22 +218,29 @@ public class LoginSteps extends BaseClass{
 
 	@Then("user found email in search table")
 	public void user_found_email_in_search_table() {
-		boolean status=searchCustPo.searchCustomerByEmail("admin@yourStore.com");
+		boolean status=searchCustPo.searchCustomerByEmail(emailAddress);
 		Assert.assertEquals(true, status);
 
 	}
 	
+					// ----------------Steps to search customer by Name---------------
 	
-	// search emailid in table without Search button
 	
-	@Then("user found emailId in table")
-	public void user_found_email_id_in_table() {
+	@Then("enter customers First and Last Name")
+	public void enter_customers_first_and_last_name() {
+		searchCustPo= new SearchCustemerPage(driver);
+		searchCustPo.setFullName(firstName,lastName);
 		
-		boolean status=searchCustPo.searchCustomerByEmailInTable("admin@yourStore.com");
-		Assert.assertEquals(true, status);
+	}
+
+	@Then("user found customers Name in table")
+	public void user_found_customers_name_in_table() {
+		String fullName=firstName+" "+lastName;
+	boolean status=	searchCustPo.searchCustomerByName(fullName);
+	Assert.assertEquals(true, status);
+			
+		}
 
 	}
 	
 	
-	
-}

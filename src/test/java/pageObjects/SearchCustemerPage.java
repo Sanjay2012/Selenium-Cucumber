@@ -43,6 +43,13 @@ public class SearchCustemerPage {
 	List<WebElement> tableColumns;
 	
 	
+	@FindBy(xpath="//*[@id=\"SearchFirstName\"]")
+	WebElement firstName;
+	
+	@FindBy(xpath="//*[@id=\"SearchLastName\"]")
+	WebElement lastName;
+	
+	
 
 	// Actions
 	
@@ -78,6 +85,8 @@ public class SearchCustemerPage {
 		waitHelper.WaitForElement(emailId, 10);
 		
 	}
+	
+	//----- to search email in table without search button
 
 	public boolean searchCustomerByEmailInTable(String email) {
 		
@@ -97,11 +106,29 @@ public class SearchCustemerPage {
 
 	}
 	
+	//----------------
+
+	public void setFullName(String firstName2, String lastName2) {
+		firstName.sendKeys(firstName2);
+		waitHelper.WaitForElement(firstName, 10);
+		lastName.sendKeys(lastName2);
+		waitHelper.WaitForElement(lastName, 10);
+	}
 	
 	
-	
-	
-	
-	
-	
+	public boolean searchCustomerByName(String fullName) {
+		
+		boolean flag=false;
+		String name=table.findElement(By.xpath("//*[@id=\"customers-grid\"]/tbody/tr/td[3]")).getText();
+		System.out.println(name);		
+		if (name.equals(fullName)) {			
+			flag=true;
+		}
+		
+	return flag;
+		
+	}
+
+
+
 }

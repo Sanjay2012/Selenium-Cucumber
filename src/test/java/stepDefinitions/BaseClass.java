@@ -14,11 +14,13 @@ public class BaseClass {
 	public AddNewCustomerPage addCustPo;
 	public SearchCustemerPage searchCustPo;
 	
-	// generating random string
+	// generating random string 
 	public static String randomstring() {
 		String generatedString1=RandomStringUtils.randomAlphabetic(5);
 		return (generatedString1);
 		
 	}
+	
+	
 
 }
