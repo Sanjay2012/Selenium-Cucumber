@@ -61,9 +61,6 @@ public class AddNewCustomerPage {
 				Thread.sleep(3000);	
 				ldriver.findElement(customerMenu).click();
 				
-				
-//		JavascriptExecutor executor = (JavascriptExecutor) ldriver;
-//		executor.executeScript("arguments[0].click();", customerMenu);
 
 	}
 
@@ -155,8 +152,6 @@ public class AddNewCustomerPage {
 			ldriver.findElement(lstItemGuest);
 		}
 		
-		//lstItem.click();
-		
 		executor.executeScript("arguments[0].click();", lstItem);
 
 	}
@@ -174,8 +169,6 @@ public class AddNewCustomerPage {
 	public void clickOnSaveButton() throws InterruptedException {
 		Thread.sleep(2000);
 		ldriver.findElement(saveButton).click();
-		
-		//executor.executeScript("arguments[0].click();", saveButton);
 		
 	}
 

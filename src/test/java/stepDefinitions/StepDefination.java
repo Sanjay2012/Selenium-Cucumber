@@ -1,18 +1,19 @@
 package stepDefinitions;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pageObjects.AddNewCategoryPage;
 import pageObjects.AddNewCustomerPage;
 import pageObjects.LoginPage;
 import pageObjects.SearchCustemerPage;
-import utilities.WaitHelper;
+import utilities.BaseClass;
 
 public class StepDefination extends BaseClass{
 	
@@ -29,6 +30,7 @@ public class StepDefination extends BaseClass{
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//Drivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
 		loginPo = new LoginPage(driver);
 		
 		
@@ -188,7 +190,6 @@ public class StepDefination extends BaseClass{
 		addCustPo.setGender("Male");
 		addCustPo.setDOB("1/30/1990");    // M/DD/YYYY
 		addCustPo.setCompany("MECTC");
-		//addCustPo.setCustomerRole("Registered");
 		addCustPo.setManagerOfVender("Vendor 1");
 		addCustPo.setAdminComment("to test");
 	}
@@ -211,8 +212,6 @@ public class StepDefination extends BaseClass{
 		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("The new customer has been added successfully"));
 
 	}
-	
-	
 	
 	
 	// ------ steps to searching a customer by emailid----------------------------------
@@ -254,6 +253,72 @@ public class StepDefination extends BaseClass{
 	Assert.assertEquals(true, status);
 			
 		}
+	
+	
+	//-------- Add New category ------------------------------
+	
+	@When("user click on catlog menu")
+	public void user_click_on_catlog_menu() throws InterruptedException {
+		addCatPo=new AddNewCategoryPage(driver);
+		addCatPo.clickCatlogMenu();
+		Thread.sleep(3000);
+	}
+	
+	
+
+	@When("click on catagories menuItem")
+	public void click_on_catagories_menu_item() throws InterruptedException {
+		addCatPo.clickOnCategoryMenuItm();
+		Thread.sleep(3000);
+
+	}
+	
+	@Then("user should land on Categories page")
+	public void user_should_landon_categories_page() {
+		
+		Assert.assertEquals("Categories / nopCommerce administration", addCustPo.getPageTitle());
+	
+	}
+	
+	@Then("click on Add new button on Categories page")
+	public void click_on_add_new_button_on_categories_page() throws InterruptedException {
+		addCatPo.clickOnAddNewButton();
+		Thread.sleep(3000);
+	}
+	
+
+	@Then("user can view add new category page")
+	public void user_can_view_add_new_category_page() {
+Assert.assertEquals("Add a new category / nopCommerce administration", addCustPo.getPageTitle());
+		
+		String actual=driver.findElement(By.xpath("//h1[@class='float-left']")).getText();
+		String expected="Add a new category back to category list";
+		Assert.assertEquals(expected, actual);
+
+	}
+	
+	String productCategory=randomstring();
+
+	@When("user enter category information")
+	public void user_enter_category_information() throws InterruptedException {
+		addCatPo.setcategoryName(productCategory);
+		//addCatPo.addCatDescription("This is an networking category product");
+		//addCatPo.setParentCategory("Computers");
+	}
+	
+	@When("click on save button present on Add Category Page")
+	public void click_on_save_button_present_on_add_category_page() throws InterruptedException {
+		addCatPo.clickOnSaveBtn();
+		Thread.sleep(3000);
+
+	}
+	
+	@Then("user can view {string} message on page")
+	public void user_can_view_message_on_page(String string) throws InterruptedException {
+		
+		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("The new category has been added successfully."));
+		Thread.sleep(3000);
+	}
 
 	}
 	

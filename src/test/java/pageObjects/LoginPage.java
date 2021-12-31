@@ -25,8 +25,6 @@ public class LoginPage {
 	@FindBy(xpath="//a[@href='/logout']") public WebElement logoutlnk;
 	
 	
-	
-	
 	// Actions
 	
 	public void enterUsername(String uname) {
